@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NumerosPares</title>
+</head>
+<body>
+    <div id="resultado"></div>
+    <script>
+        // Digitar o primeiro número menor que o segundo
+        var num1=parseInt(prompt("Digite o primeiro número: (menor número)")); 
+        var num2=parseInt(prompt("Digite o segundo número: (maior número)"));
+
+            while(num1 <= num2){
+                if(num1 % 2 == 0){
+                    document.getElementById("resultado").innerHTML += num1 + "<br>";
+                    console.log(num1);
+                }
+                num1++;
+            }
+    </script>
+</body>
+</html>

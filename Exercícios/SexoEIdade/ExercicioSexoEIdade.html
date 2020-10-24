@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SexoEIdade</title>
+</head>
+<body>
+    Sexo:<select id="select">
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+    </select><br>
+    Idade:<input id="idade" type="number"><br>
+    <button onclick="resultado(document.getElementById('select').value,parseInt(document.getElementById('idade').value))">Verificar</button>
+    <script>
+        function resultado(sexo, idade){
+            if(sexo === "M" && idade >= 18){
+                alert("pode entrar no bar com taxa");
+            }
+            else if(sexo === "F" && idade >= 18){
+                alert("pode entrar no bar sem taxa");
+            }
+            else if(idade < 18){
+                alert("não pode entrar no bar");
+            }
+        }
+    </script>
+</body>
+</html>

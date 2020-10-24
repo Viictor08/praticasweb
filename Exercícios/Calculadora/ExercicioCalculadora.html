@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Calculadora</title>
+        <script type="text/javascript">
+            var displayBuffer = "";
+            var numero = "";
+            var termos = [undefined, undefined, undefined];
+            var resultado = undefined;
+
+            function pressNum(num){
+                numero = numero.concat(num.innerHTML);
+                showDisplay(num.innerHTML);
+            }
+
+            function pressOperador(op){
+                if(termos[1] == undefined){
+                    termos[0] = numero;
+                    termos[1] = op.innerHTML;
+                    showDisplay(op.innerHTML);
+                    numero = "";
+                }
+            }
+
+            function pressEqual(){
+                if(termos[0] != undefined && termos[1] != undefined && numero != ""){
+                    termos[2] = numero;
+                    var keepResultado;
+                    switch(termos[1]){
+                        case '+':
+                            resultado = Number(termos[0]) + Number(termos[2]);
+                            break;
+                        case '-':
+                            resultado = Number(termos[0]) - Number(termos[2]);
+                            break;
+                        case '*':
+                            resultado = Number(termos[0]) * Number(termos[2]);
+                            break;
+                        case '/':
+                            resultado = Number(termos[0]) / Number(termos[2]);
+                            break;
+                    }
+                keepResultado = resultado;
+                limparDisplay();
+                showDisplay(resultado);
+                limparMemoria();
+                numero = keepResultado.toString();
+                }
+            }
+
+            function limparMemoria(){
+                numero = "";
+                termos = [undefined, undefined, undefined];
+                resultado = undefined;
+            }
+
+            function limparDisplay(){
+                displayBuffer = "";
+                var tela = document.getElementById('display');
+                tela.value = displayBuffer;
+            }
+
+            function limparTudo(){
+                limparDisplay();
+                limparMemoria();
+            }
+
+            function showDisplay(conteudo){
+                displayBuffer = displayBuffer.concat(conteudo);
+                var tela = document.getElementById('display');
+                tela.value = displayBuffer;
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="calculadora">
+            <textarea id="display" disabled rows="1"></textarea>
+            <div>
+                <button onclick="pressNum(this)">7</button>
+                <button onclick="pressNum(this)">8</button>
+                <button onclick="pressNum(this)">9</button>
+                <button onclick="pressOperador(this)">+</button>
+            </div>
+            <div>
+                <button onclick="pressNum(this)">6</button>
+                <button onclick="pressNum(this)">5</button>
+                <button onclick="pressNum(this)">4</button>
+                <button onclick="pressOperador(this)">-</button>
+            </div>
+            <div>
+                <button onclick="pressNum(this)">3</button>
+                <button onclick="pressNum(this)">2</button>
+                <button onclick="pressNum(this)">1</button>
+                <button onclick="pressOperador(this)">*</button>
+            </div>
+            <div>
+                <button onclick="pressNum(this)">0</button>
+                <button onclick="pressNum(this)">.</button>
+                <button id="limpatela" onclick="limparTudo()">c</button>
+                <button onclick="pressOperador(this)">/</button>
+            </div>
+            <button id="igualdade" onclick="pressEqual()">=</button> 
+        </div>
+    </body>
+</html>
